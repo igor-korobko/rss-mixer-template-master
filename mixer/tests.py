@@ -50,7 +50,7 @@ class UrlsTests(TestCase):
         self.assertIsNone(urls.get_urls())
 
 
-class PostTests(TestCase):
+class PostListTests(TestCase):
 
     cache_post_name = "posts"
 
@@ -66,6 +66,15 @@ class PostTests(TestCase):
         post = Post(1, "author", "title", "summary", "content", "pub_date", "chanel_title", "chanel_link")
         posts_list.add_post(post)
         self.assertEqual(len(posts_list.posts), 1)
+
+
+class PostTests(TestCase):
+
+    def test_post_structure(self):
+        keys = ['channel_title', 'title', 'channel_link', 'author', 'summary', 'content', 'pub_date', 'id']
+        for key in keys:
+            self.assertTrue(key in Post.__dict__.keys())
+
 
 
 

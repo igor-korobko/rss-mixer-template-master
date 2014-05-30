@@ -139,13 +139,10 @@ def rss(request):
 
     urls_list = UrlsList()
     error = ""
-    is_url = False
-    # raise
     if "add_feed" in request.POST and "feed" in request.POST:
         validator = URLValidator()
         try:
-            is_url = validator(request.POST["feed"])
-            # raise
+            validator(request.POST["feed"])
         except ValidationError, e:
             error = e
 
