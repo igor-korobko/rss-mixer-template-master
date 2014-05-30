@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.core.context_processors import csrf
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from mem_models import UrlsList, PostList

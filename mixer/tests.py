@@ -1,71 +1,63 @@
 from django.test import TestCase
-from mixer.views import UrlsList, PostList, Post
+from mixer.mem_models import UrlsList, PostList, Post
 from django.core.cache import cache
-import pickle
 
 
-class UrlsTests(TestCase):
+class UrlsListTest(TestCase):
 
     url = 'http://feeds.bbci.co.uk/news/rss.xml'
     cache_urls_name = "urls"
 
-    def test_cache_save(self):
-        cache.delete(self.cache_urls_name)
-        urls = UrlsList()
-        urls.add_url(self.url)
-        del urls
-        self.assertNotEqual(cache.get(self.cache_urls_name), None)
+    def setUp(self):
+        self.urls = UrlsList()
 
-    def test_cache_return(self):
+    def tearDown(self):
         cache.delete(self.cache_urls_name)
-        urls = UrlsList()
-        urls.add_url(self.url)
-        del urls
-        urls_obj = pickle.loads(cache.get(self.cache_urls_name))
-        self.assertEqual(urls_obj.urls.popitem()[1], self.url)
 
-    def test_get_url_where_urls_is_empty(self):
-        cache.delete(self.cache_urls_name)
-        urls = UrlsList()
-        self.assertIsNone(urls.get_urls())
-
-    def test_add_and_get_url_where_urls_is_not_empty(self):
-        cache.delete(self.cache_urls_name)
-        urls = UrlsList()
-        urls.add_url(self.url)
-        self.assertEqual(len(urls.get_urls()), 1)
-        self.assertEqual(urls.get_urls().popitem()[1], self.url)
+    def test_add_url(self):
+        len_before = len(self.urls.urls)
+        self.urls.add_url(self.url)
+        self.assertEqual(len(self.urls.urls), len_before + 1)
 
     def test_del_url(self):
-        cache.delete(self.cache_urls_name)
-        urls = UrlsList()
-        urls.add_url(self.url)
-        self.assertEqual(len(urls.urls), 1)
-        item = {}
-        item.update(urls.get_urls())
-        item = item.popitem()
-        self.assertEqual(item[1], self.url)
-        urls.del_url(int(item[0]))
-        self.assertEqual(len(urls.urls), 0)
-        self.assertIsNone(urls.get_urls())
+        len_before = len(self.urls.urls)
+        item_id = self.urls.add_url(self.url)
+        self.urls.del_url(item_id)
+        self.assertEqual(len(self.urls.urls), len_before)
+
+    def test_urls_update_cache_on_destroy(self):
+        self.urls.add_url(self.url)
+        del self.urls
+        self.assertNotEqual(cache.get(self.cache_urls_name), None)
+
+    def test_get_urls_return_dict_of_urls(self):
+        len_before = len(self.urls.urls)
+        self.urls.add_url(self.url)
+        test_list = self.urls.get_urls()
+        self.assertIsInstance(test_list, dict)
+        self.assertEqual(len_before + 1, len(test_list.values()))
 
 
 class PostListTests(TestCase):
 
     cache_post_name = "posts"
 
-    def test_cache_save(self):
+    def setUp(self):
+        self.posts = PostList()
+
+    def tearDown(self):
         cache.delete(self.cache_post_name)
-        post = PostList()
-        del post
+
+    def test_posts_update_cache_on_object_destroy(self):
+        post = Post(1, "author", "title", "summary", "content", "pub_date", "chanel_title", "chanel_link")
+        self.posts.add_post(post)
+        del self.posts
         self.assertNotEqual(cache.get(self.cache_post_name), None)
 
     def test_add_post(self):
-        cache.delete(self.cache_post_name)
-        posts_list = PostList()
         post = Post(1, "author", "title", "summary", "content", "pub_date", "chanel_title", "chanel_link")
-        posts_list.add_post(post)
-        self.assertEqual(len(posts_list.posts), 1)
+        self.posts.add_post(post)
+        self.assertEqual(len(self.posts.posts), 1)
 
 
 class PostTests(TestCase):

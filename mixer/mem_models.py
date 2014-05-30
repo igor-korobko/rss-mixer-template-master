@@ -1,6 +1,4 @@
 from django.core.cache import cache
-from django.core.validators import URLValidator
-from django.core.exceptions import ValidationError
 import pickle
 import time
 
@@ -22,7 +20,7 @@ class UrlsList():
         cache.set("urls", data)
 
     def get_urls(self):
-        if len(self.urls)>0:
+        if len(self.urls) > 0:
             return self.urls
         else:
             return None
@@ -30,12 +28,10 @@ class UrlsList():
     def add_url(self, url):
         id = int(time.time())
         self.urls[id] = url
+        return id
 
     def del_url(self, key):
-        if isinstance(key, int):
-            del self.urls[key]
-        else:
-            del self.urls[int(key)]
+        del self.urls[int(key)]
 
 
 class Post():
@@ -92,7 +88,7 @@ class PostList():
             else:
                 self.posts[post_count] = post
         else:
-            raise("Is not Post object")
+            raise "Is not Post object"
 
     def sorted_posts_out_in_array(self):
         posts_arr = []
