@@ -8,15 +8,21 @@ Getting Started with Back-End task
 ----------------------------------
 
 The only thing you need is django installed in your python path. If you don't, just run:
-
+    virtualenv .venv
+    source ./.venv/bin/activate
     pip install django
+    pip install feedparser
 
 To initiate the project run:
 
-    django-admin.py startproject --template=https://github.com/360youlun/rss-mixer-template/archive/master.zip rss
-    cd rss
+    cd rss-mixer-template-master
     python manage.py runserver
 
 Open http://127.0.0.1:8000/ in the browser and you're all set:
+
+To run the test:
+
+    cd rss-mixer-template-master
+    python manage.py test
 
 ![](assets/screen.png)
