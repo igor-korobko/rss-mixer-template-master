@@ -56,10 +56,16 @@ class PostTests(TestCase):
 
     def test_cache_save(self):
         cache.delete(self.cache_post_name)
-        urls = PostList()
-        del urls
+        post = PostList()
+        del post
         self.assertNotEqual(cache.get(self.cache_post_name), None)
 
+    def test_add_post(self):
+        cache.delete(self.cache_post_name)
+        posts_list = PostList()
+        post = Post(1, "author", "title", "summary", "content", "pub_date", "chanel_title", "chanel_link")
+        posts_list.add_post(post)
+        self.assertEqual(len(posts_list.posts), 1)
 
 
 
