@@ -1,0 +1,203 @@
+<div class="page-header">
+    <h1>RSS Mixer
+        <small>Back-End and Front-End test</small>
+    </h1>
+</div>
+
+<div class="well">
+    <h3>Introduction</h3>
+
+    <p>This is a simple app where you can add RSS feed to the "mix" and see
+        all posts from all feeds mixed together and ordered by date.</p>
+
+    <p>When you code, please, value quality over quantity! You don't have to deliver <em>all</em> user stories. This
+        test is time-boxed to 2 hours, don't spend more time than that.</p>
+
+    <p>Work on one story at a time and don't switch to the next one until the current story is 100% done - meaning:
+    it's working, all acceptance criteria are confirmed, code quality achieved. (+ test coverage for back-end task)</p>
+
+    <h4>User Stories</h4>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        As a User I can save feeds to the mix so that I can access them later
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <h5>Acceptance criteria:</h5>
+                    <ul>
+                        <li>User can see input field with "Feed URL" label/placeholder</li>
+                        <li>User can add a feed by pressing "Add Feed" button</li>
+                        <li>If User enters a feed URL it will be saved</li>
+                        <li>If feed URL is empty it won't be saved</li>
+                        <li>The result of this form submission is obvious to the user</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        As a User I can see the list of feeds I've saved so that I know what I did
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h5>Acceptance criteria:</h5>
+                    <ul>
+                        <li>Every saved feed is displayed</li>
+                        <li>User can see a URL of each saved feed</li>
+                        <li>User can open a link to the feed in a new tab/window by clicking on it</li>
+                        <li>Feeds list is updated when user opens the page</li>
+                        <li>Feeds list is updated when user adds or deletes a feed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        As a User I can see all posts from my saved feeds
+                        so that I always have things to read
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h5>Acceptance criteria:</h5>
+                    <ul>
+                        <li>Every post or every feed is displayed</li>
+                        <li>User can see a post title, summary, source and author</li>
+                        <li>User can open a link to the source in a new tab/window
+                            by clicking on the source name
+                        </li>
+                        <li>Posts are ordered by date</li>
+                        <li>Posts list is updated when user opens the page</li>
+                        <li>Posts list is updated when user adds or deletes a feed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        As a User I can delete a feed so that I don't have to read it anymore
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h5>Acceptance criteria:</h5>
+                    <ul>
+                        <li>User can see a delete icon next to each feed</li>
+                        <li>User can see delete a feed by clicking on that icon</li>
+                        <li>Feeds list is updated when user deletes a feed</li>
+                        <li>Posts list is updated when user adds or deletes a feed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Task description</h3>
+        </div>
+        <div class="panel-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="taskDescription">
+                <li class="active"><a href="#fe" data-toggle="tab">Front-End</a></li>
+                <li><a href="#be" data-toggle="tab">Back-End</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="fe">
+                    <h4>Prerequisites</h4>
+
+                    <p>
+                        <a href="https://github.com/360youlun/rss-mixer-template/archive/gh-pages.zip"
+                           class="btn btn-primary">
+                            <i class="glyphicon glyphicon-cloud-download"></i>
+                            Front-End files
+                        </a> (this page)
+                    </p>
+
+                    <p>For the front-end we don't use any dynamic data and instead
+                        use static JSON files for Ajax requests. But we assume our code
+                        should be easily switched to a dynamic backend.</p>
+                    <ul>
+                        <li>Feeds added by ajax POST to json/feeds.json</li>
+                        <li>Feeds list loaded by ajax GET to json/feeds.json</li>
+                        <li>Posts list loaded by ajax GET to json/feeds.json</li>
+                        <li>Feeds list updated on page load and feed added</li>
+                        <li>Posts list updated on page load and feed added</li>
+                    </ul>
+                    <h4>Requirements</h4>
+
+                    <p>The fuctionality of the user stories above is what we want to
+                        build. You should implement as many stories as you can within
+                        the time you have (2 hours) in order of priority.</p>
+
+                    <p>Additionally to the pure fuctional stuff you need to improve
+                        the UI/UX of this "app". It should look pleasant to the eye
+                        and be easy to use.</p>
+                </div>
+                <div class="tab-pane fade" id="be">
+                    <h4>Prerequisites</h4>
+
+                    <p>
+                        <a href="https://github.com/360youlun/rss-mixer-template/"
+                           class="btn btn-primary">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Getting Started Doc
+                        </a>
+                        <a href="https://github.com/360youlun/rss-mixer-template/archive/master.zip"
+                           class="btn btn-primary">
+                            <i class="glyphicon glyphicon-cloud-download"></i>
+                            Back-End files
+                        </a> (Django project)
+                    </p>
+
+                    <p>For the back-end we don't have to use ajax but we should
+                        support it so we can replace static JSON files in the Front-End
+                        test with dynamic requests and our code will still work.</p>
+
+                    <p>We don't need any javascript or Front-End coding here, just
+                        use django and existing UI mockup and make it dynamic.</p>
+
+                    <p>For this test we're going to use django cache instead of DB
+                        (models). It's ok to use models instead but cache is preferred.</p>
+                    <h4>Requirements</h4>
+                    <ul>
+                        <li>The fuctionality of the user stories above is what we want to
+                            build. You should implement as many stories as you can within
+                            the time you have (2 hours) in order of priority.</li>
+
+                        <li>For adding feeds use a Django Form that saves the data into
+                            basic django cache backend. You can use LocMem and any other
+                            configuration.</li>
+
+                        <li>When we add a feed we should download and parse it to save
+                            the posts into the cache backend as well.</li>
+
+                        <li>Posts are loaded from all feeds, mixed together and ordered
+                            by date.</li>
+
+                        <li>Your code (form, view, utils) has to be covered with unit tests,
+                            ideally you should use TDD to develop the whole thing.</li>
+
+                        <li>Your code should pass PEP-8 validation.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

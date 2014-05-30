@@ -1,0 +1,28 @@
+{
+  "response": {
+    "status": "OK",
+    "result": [
+        {
+          "id": 1,
+          "name": "http://feeds.bbci.co.uk/news/rss.xml"
+        },
+        {
+          "id": 2,
+          "name": "http://staff.tumblr.com/rss"
+        },
+        {
+          "id": 3,
+          "name": "http://feeds.bbci.co.uk/news/rss.xml"
+        },
+        {
+          "id": 4,
+          "name": "http://staff.tumblr.com/rss"
+        },
+        {
+          "id": 5,
+          "name": "http://feeds.bbci.co.uk/news/rss.xml"
+        }
+      ]
+    }
+  }
+}

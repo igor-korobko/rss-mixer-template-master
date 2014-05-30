@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RSS Mixer</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+    <div class="container">
+      <div class="page-header">
+        <h1>RSS Mixer <small>Back-End and Front-End test</small></h1>
+      </div>
+
+      <div class="well">
+        <h3>Introduction</h3>
+        <p>This is a simple app where you can add RSS feed to the "mix" and see
+          all posts from all feeds mixed together and ordered by date.</p>
+        <p><a href="https://dl.dropboxusercontent.com/u/943118/360youlun/rss-ui.zip" class="btn btn-primary">
+          <i class="glyphicon glyphicon-cloud-download"></i>
+          Download files
+        </a></p>
+
+        <h4>User Stories</h4>
+
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                  As a User I can save feeds to the mix so that I can access them later
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <h5>Acceptance criteria:</h5>
+                <ul>
+                  <li>User can see input field with "Feed URL" label/placeholder</li>
+                  <li>User can add a feed by pressing "Add Feed" button</li>
+                  <li>If User enters a feed URL it will be saved</li>
+                  <li>If feed URL is empty it won't be saved</li>
+                  <li>The result of this form submission is obvious to the user</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                  As a User I can see the list of feeds I've saved so that I know what I did
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Acceptance criteria:</h5>
+                <ul>
+                  <li>Every saved feed is displayed</li>
+                  <li>User can see a URL of each saved feed</li>
+                  <li>User can open a link to the feed in a new tab/window by clicking on it</li>
+                  <li>Feeds list is updated when user opens the page</li>
+                  <li>Feeds list is updated when user adds or deletes a feed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                  As a User I can see all posts from my saved feeds
+                  so that I always have things to read
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Acceptance criteria:</h5>
+                <ul>
+                  <li>Every post or every feed is displayed</li>
+                  <li>User can see a post title, summary, source and author</li>
+                  <li>User can open a link to the source in a new tab/window
+                    by clicking on the source name</li>
+                  <li>Posts are ordered by date</li>
+                  <li>Posts list is updated when user opens the page</li>
+                  <li>Posts list is updated when user adds or deletes a feed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                  As a User I can delete a feed so that I don't have to read it anymore
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Acceptance criteria:</h5>
+                <ul>
+                  <li>User can see a delete icon next to each feed</li>
+                  <li>User can see delete a feed by clicking on that icon</li>
+                  <li>Feeds list is updated when user deletes a feed</li>
+                  <li>Posts list is updated when user adds or deletes a feed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Task description</h3>
+          </div>
+          <div class="panel-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="taskDescription">
+              <li class="active"><a href="#fe" data-toggle="tab">Front-End</a></li>
+              <li><a href="#be" data-toggle="tab">Back-End</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="fe">
+                <h4>Prerequisites</h4>
+                <p>For the front-end we don't use any dynamic data and instead
+                use static JSON files for Ajax requests. But we assume our code
+                should be easily switched to a dynamic backend.</p>
+                <ul>
+                  <li>Feeds added by ajax POST to json/feeds.json</li>
+                  <li>Feeds list loaded by ajax GET to json/feeds.json</li>
+                  <li>Posts list loaded by ajax GET to json/feeds.json</li>
+                  <li>Feeds list updated on page load and feed added</li>
+                  <li>Posts list updated on page load and feed added</li>
+                </ul>
+                <h4>Requirements</h4>
+                <p>The fuctionality of the user stories above is what we want to
+                  build. You should implement as many stories as you can within
+                  the time you have (2 hours) in order of priority.</p>
+                <p>Additionally to the pure fuctional stuff you need to improve
+                  the UI/UX of this "app". It should look pleasant to the eye
+                  and be easy to use.</p>
+              </div>
+              <div class="tab-pane fade" id="be">
+                <h4>Prerequisites</h4>
+                <p>For the back-end we don't have to use ajax but we should
+                support it so we can replace static JSON files in the Front-End
+                test with dynamic requests and our code will still work.</p>
+                <p>We don't need any javascript or Front-End coding here, just
+                  use django and existing UI mockup and make it dynamic.</p>
+                <p>For this test we're going to use django cache instead of DB
+                  (models). It's ok to use models instead but cache is preferred.</p>
+                <h4>Requirements</h4>
+                <p>The fuctionality of the user stories above is what we want to
+                  build. You should implement as many stories as you can within
+                  the time you have (2 hours) in order of priority.</p>
+                <p>For adding feeds use a Django Form that saves the data into
+                  basic django cache backend. You can use LocMem and any other
+                  configuration.</p>
+                <p>When we add a feed we should download and parse it to save
+                  the posts into the cache backend as well.</p>
+                <p>Posts are loaded from all feeds, mixed together and ordered
+                  by date.</p>
+                <p>Your code (form, view, utils) has to be covered with unit tests,
+                  ideally you should use TDD to develop the whole thing.</p>
+                <p>If you have enough time add Ajax handler views similar to
+                  static JSON files from the Front-End task (optional).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h1>RSS Mixer <small>UI Mockup (rough)</small></h1>
+      </div>
+	    <div class="row clearfix">
+    		<div class="col-md-12 column">
+          <h2>Saved Feeds (<span>2</span>)</h2>
+    			<form role="form" class="form-inline">
+    				<div class="form-group">
+    					 <input type="text" class="form-control" id="feed" placeholder="Feed URL" />
+               <button class="btn btn-default">
+                 Add Feed
+               </button>
+               <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right" title="Submits ajax.post to json/feeds.json"></i>
+    				</div>
+    			</form>
+          <h3>
+            Feeds
+            <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right" title="Loads by ajax.get to json/feeds.json"></i>
+          </h3>
+    			<ul>
+            <li><a href="http://staff.tumblr.com/rss">http://staff.tumblr.com/rss</a> <i class="glyphicon glyphicon-minus-sign" rel="tooltip" data-toggle="tooltip" data-placement="right" title="Submits ajax.delete to json/feeds.json"></i></li>
+            <li><a href="http://feeds.bbci.co.uk/news/rss.xml">http://feeds.bbci.co.uk/news/rss.xml</a> <i class="glyphicon glyphicon-minus-sign" rel="tooltip" data-toggle="tooltip" data-placement="right" title="Submits ajax.delete to json/feeds.json"></i></li>
+          </ul>
+    		</div>
+    	</div>
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h2>
+            Posts (<span>3</span>)
+            <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right" title="Loads by ajax.get to json/posts.json"></i>
+          </h2>
+          <div>
+            <h3>France urges reform of 'remote' EU</h3>
+            <p>France's president will tell Europe's leaders to focus on boosting the economy, as they prepare to discuss the fallout from the European polls.</p>
+            <p>Source: <a href="http://www.bbc.com/news/">BBC</a> | Author: <em>Tina Fei</em>
+            <hr/>
+          </div>
+          <div>
+            <h3>France urges reform of 'remote' EU</h3>
+            <p>France's president will tell Europe's leaders to focus on boosting the economy, as they prepare to discuss the fallout from the European polls.</p>
+            <p>Source: <a href="http://www.bbc.com/news/">BBC</a> | Author: <em>Tina Fei</em>
+            <hr/>
+          </div>
+          <div>
+            <h3>France urges reform of 'remote' EU</h3>
+            <p>France's president will tell Europe's leaders to focus on boosting the economy, as they prepare to discuss the fallout from the European polls.</p>
+            <p>Source: <a href="http://www.bbc.com/news/">BBC</a> | Author: <em>Tina Fei</em>
+            <hr/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('*[rel="tooltip"]').tooltip();
+        $('#taskDescription').tab();
+      });
+    </script>
+  </body>
+</html>

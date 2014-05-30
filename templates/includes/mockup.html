@@ -1,0 +1,57 @@
+<div class="page-header">
+    <h1>RSS Mixer
+        <small>UI Mockup (rough)</small>
+    </h1>
+</div>
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h2>Saved Feeds (<span>{{ urls_count }}</span>)</h2>
+        {{ error }}
+        <form role="form" class="form-inline" method="post" action="{% url 'rss' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="url" class="form-control" id="feed" placeholder="Feed URL" name="feed"/>
+                <button class="btn btn-default" type="submit" name="add_feed">
+                    Add Feed
+                </button>
+                <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right"
+                   title="Submits ajax.post to json/feeds.json"></i>
+            </div>
+        </form>
+        <h3>
+            Feeds
+            <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right"
+               title="Loads by ajax.get to json/feeds.json"></i>
+        </h3>
+        <ul>
+            <!--http://feeds.bbci.co.uk/news/rss.xml-->
+            {% for key, value in urls.items %}
+                <li><a target="_blank" href="{{ value }}">{{ value }}</a> <a href="{% url 'del_url' key %}"><i
+                        class="glyphicon glyphicon-minus-sign" rel="tooltip" data-toggle="tooltip" data-placement="right"
+                        title="Submits ajax.delete to json/feeds.json"></i> </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h2>
+            Posts (<span>{{ posts_count }}</span>)
+            <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right"
+               title="Loads by ajax.get to json/posts.json"></i>
+        </h2>
+
+    {% for post in post_list %}
+        <div>
+            <h3>{{ post.title }}</h3>
+
+            <p>{{ post.summary }}</p>
+
+            <p>Source: <a target="_blank" href="{{ post.channel_link }}">{{ post.channel_title }}</a> | Author: <em>{{ post.author }}</em>
+            <hr/>
+        </div>
+    {% endfor %}
+
+    </div>
+</div>
